@@ -3,8 +3,8 @@ import { deleteImpresora, getImpresora, getImpresoras, postImpresora, updateImpr
 
 const router = Router();
 
-router.get("/", getImpresora);
-router.get("/:id", getImpresoras);
+router.get("/", getImpresoras);
+router.get("/:id", getImpresora);
 router.post("/", postImpresora);
 router.put("/:id", updateImpresora);
 router.delete("/:id", deleteImpresora);
