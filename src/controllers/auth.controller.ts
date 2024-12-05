@@ -16,8 +16,6 @@ const loginController = async ({ body }: Request, res: Response) => {
     } else {
         res.send(response);
     }
-
-    res.send(response);
 }
 
 export { loginController, registerController }
