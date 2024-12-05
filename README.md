@@ -6,7 +6,7 @@ Para poder levantar estos 2 proyectos y lo que tienen en común es que deben de:
 - Instalar las dependencias
 - Tener el servicio de base de datos MongoDB
 
-## Lavantar proyecto Backend
+## Levantar proyecto Backend
 - Ejecurtar la APIRest con **npm run dev**
 
 ## Levantar proyecto Frontend
