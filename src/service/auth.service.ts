@@ -15,12 +15,12 @@ const registerNewUser = async ({ user, email, password }: User) => {
 
 const loginUser = async ({ email, password }: User) => {
     const checkIs = await UserModel.findOne({ email });
-    if(!checkIs) return "Not found user";
+    if(!checkIs) throw new Error("User not found")
 
     const passwordHash = checkIs.password;
     const isCorrect = await verified(password, passwordHash);
 
-    if(!isCorrect) return "Password incorrect";
+    if(!isCorrect) throw new Error("Incorrect password")
     const token = generateToken(checkIs.email);
 
     const data = {

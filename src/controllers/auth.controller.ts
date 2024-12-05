@@ -14,14 +14,14 @@ const registerController = async ({ body }: Request, res: Response) => {
 }
 
 const loginController = async ({ body }: Request, res: Response) => {
-    const { email, password } = body;
-    const response = await loginUser({ email, password });
+    try {
+        const { email, password } = body;
+        const response = await loginUser({ email, password });
+        res.send(response)
+    }
 
-    if (response === "Password incorrect") {
-        res.status(403);
-        res.send(response);
-    } else {
-        res.send(response);
+    catch (e: any) {
+        res.status(500).json({ message: e.message });
     }
 }
 
