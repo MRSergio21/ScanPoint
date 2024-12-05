@@ -1,14 +1,14 @@
 import {Schema, Types, model, Model} from "mongoose";
 
-const IntemSchema = new Schema(
+const UserSchema = new Schema(
     {
         user: {
             type: String,
-            required: true,
         },
         email: {
             type: String,
             required: true,
+            unique: true,
         },
         password: {
             type: String,
@@ -21,6 +21,6 @@ const IntemSchema = new Schema(
     }
 )
 
-const UserModel = model('user', IntemSchema);
+const UserModel = model('user', UserSchema);
 
 export default UserModel;
