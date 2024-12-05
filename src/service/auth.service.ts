@@ -5,7 +5,9 @@ import { encrypt, verified } from "../utils/password.handle";
 
 const registerNewUser = async ({ user, email, password }: User) => {
     const checkIs = await UserModel.findOne({ email });
-    if(checkIs) return "Already used";
+    const userCheck = await UserModel.findOne({ user });
+    if(checkIs) throw new Error("Email already used")
+    if(userCheck) throw new Error("User already used")
     const passHash = await encrypt(password);
     const registerNewUser = await UserModel.create({ user, email, password: passHash })
     return registerNewUser;
