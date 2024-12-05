@@ -2,9 +2,12 @@
   "name": "scanpoint",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc -p .",
+    "dev": "npm run build && node dist/server.js",
+    "start": "npm run build && node dist/server.js"
   },
   "repository": {
     "type": "git",
@@ -23,10 +26,14 @@
     "@types/express": "^5.0.0",
     "@types/mongoose": "^5.11.97",
     "@types/multer": "^1.4.12",
+    "bootstrap": "^5.3.3",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.1",
     "mongoose": "^8.8.3",
     "multer": "^1.4.5-lts.1"
+  },
+  "devDependencies": {
+    "@types/bootstrap": "^5.2.10"
   }
 }
