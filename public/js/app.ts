@@ -55,8 +55,9 @@ if (registerForm) {
                 alert(`Error: ${data.message || "No se pudo realizar el registro."}`);
             }
         } catch (error) {
+            console.log(error);
             console.error("Error al registrarse:", error);
-            alert("Ocurrió un error al conectarse con el servidor.");
+            alert("Error al registrarse");
         }
     });
 }
