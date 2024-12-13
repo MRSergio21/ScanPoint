@@ -31,6 +31,30 @@ if (!token) {
     window.location.href = "index.html";
     throw new Error("No has iniciado sesión.");
 }
+function checkAuthentication() {
+    return __awaiter(this, void 0, void 0, function* () {
+        const token = localStorage.getItem("token");
+        if (!token) {
+            alert("No tienes acceso. Por favor, inicia sesión.");
+            window.location.href = "index.html";
+            return;
+        }
+        try {
+            // Verificar token con el servidor
+            const response = yield fetch("http://localhost:3002/validate-token", {
+                headers: { "Authorization": `Bearer ${token}` }
+            });
+            if (!response.ok) {
+                throw new Error("Token inválido");
+            }
+        }
+        catch (error) {
+            alert("Tu sesión ha expirado. Por favor, inicia sesión nuevamente.");
+            localStorage.removeItem("token"); // Limpiar token inválido
+            window.location.href = "index.html";
+        }
+    });
+}
 // Selección de elementos HTML
 const printerTableBody = document.getElementById("printer-table-body");
 const logoutButton = document.getElementById("logout-button");
@@ -39,6 +63,7 @@ const editPrinterForm = document.getElementById("editPrinterForm");
 const filterInput = document.getElementById("filterInput");
 const downloadButton = document.getElementById("downloadButton");
 const createButton = document.getElementById("create-printer-button");
+const sortByDateButton = document.getElementById("sort-by-date-button");
 let impresorasData = [];
 // Función para obtener las impresoras desde el backend
 function fetchImpresoras() {
@@ -348,6 +373,21 @@ if (downloadButton) {
 }
 else {
     console.error("Botón de descarga no encontrado.");
+}
+// Función para ordenar las impresoras por fecha de compra
+function sortPrintersByDate() {
+    if (!impresorasData || impresorasData.length === 0) {
+        alert("No hay datos disponibles para ordenar.");
+        return;
+    }
+    // Ordenar las impresoras por fecha de compra
+    impresorasData.sort((a, b) => {
+        const dateA = new Date(a.fechaCompra).getTime(); // Convertir fecha a timestamp
+        const dateB = new Date(b.fechaCompra).getTime(); // Convertir fecha a timestamp
+        return dateA - dateB; // Cambia a "dateB - dateA" si quieres orden descendente
+    });
+    // Renderizar las impresoras ordenadas
+    renderImpresoras(impresorasData);
 }
 // Inicializar la tabla al cargar la página
 fetchImpresoras();
