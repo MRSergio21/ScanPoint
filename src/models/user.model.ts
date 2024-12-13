@@ -17,11 +17,12 @@ const UserSchema = new Schema(
         },
     },
     {
+        collection: 'users',
         timestamps: true,
         versionKey: false,
     }
 )
 
-const UserModel = model('user', UserSchema);
+const UserModel = model('users', UserSchema);
 
 export default UserModel;

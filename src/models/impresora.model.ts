@@ -14,13 +14,19 @@ const IntemSchema = new Schema(
             type: String,
             required: true,
         },
+        createdBy: {
+            type: Types.ObjectId,
+            ref: 'users',
+            required: true,
+        },
     },
     {
+        collection: 'impresoras',
         timestamps: true,
         versionKey: false,
     }
 )
 
-const ImpresoraModel = model('impresora', IntemSchema);
+const ImpresoraModel = model('impresoras', IntemSchema);
 
 export default ImpresoraModel;

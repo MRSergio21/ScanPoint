@@ -9,5 +9,5 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(router);
-db().then(() => console.log("Conexion Ready"));
-app.listen(PORT, () => console.log(`Estoy listo :) en el puerto ${PORT}`));
+db().then(() => console.log("Conexion a base de datos exitoso"));
+app.listen(PORT, () => console.log(`Funcionando en el puerto ${PORT}`));

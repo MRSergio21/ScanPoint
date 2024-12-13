@@ -21,7 +21,9 @@ const loginUser = async ({ email, password }: User) => {
     const isCorrect = await verified(password, passwordHash);
 
     if(!isCorrect) throw new Error("Incorrect password")
-    const token = generateToken(checkIs.email);
+        console.log(checkIs)
+    const token = generateToken(checkIs as User);
+    console.log(token);
 
     const data = {
         token,

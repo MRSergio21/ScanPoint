@@ -17,12 +17,12 @@ const eliminarImpresora = async (id: string) => {
 };
 
 const obtenerImpresoras = async () => {
-    const responseImpresora = await ImpresoraModel.find({});
+    const responseImpresora = await ImpresoraModel.find({}).populate('createdBy');
     return responseImpresora;
 };
 
 const obtenerImpresora = async (id: string) => {
-    const responseImpresora = await ImpresoraModel.findOne({_id:id});
+    const responseImpresora = await ImpresoraModel.findOne({_id:id}).populate('createdBy');
     return responseImpresora;
 };
 
